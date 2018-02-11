@@ -3,7 +3,6 @@ import * as ReactMde from 'react-mde';
 import { Markdown } from 'react-showdown';
 import 'simplemde/dist/simplemde.min.css';
 
-
 import 'react-mde/lib/styles/css/react-mde-preview.css';
 import 'react-mde/lib/styles/css/react-mde-textarea.css';
 import 'react-mde/lib/styles/css/react-mde-toolbar.css';
@@ -43,8 +42,19 @@ class App extends Component {
 				</header>
 				<SimpleMDE
 					className="test"
-					initialValue={"Type here!"}
 					onChange={this.handleChange.bind(this)}
+					options={{
+            showIcons: ["code", "table", "horizontal-rule"],
+
+						placeholder: 'Type here...',
+						renderingConfig: {
+							codeSyntaxHighlighting: true
+						},
+						promptURLs: true,
+						shortcuts: {
+							drawTable: 'Cmd-Alt-T'
+						},
+					}}
 				/>
 			</div>
 		);
