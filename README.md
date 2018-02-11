@@ -1,2 +1,3 @@
 # notey
-md editor 
+---
+a custom md editor 
