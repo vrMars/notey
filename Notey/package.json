@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "codemirror": "^5.34.0",
+    "firebase": "^4.9.1",
     "font-awesome": "^4.7.0",
     "react": "^16.2.0",
     "react-contenteditable": "^2.0.5",
@@ -12,6 +13,8 @@
     "react-scripts": "1.1.1",
     "react-showdown": "^1.6.0",
     "react-simplemde-editor": "^3.6.11",
+    "react-timer-mixin": "^0.13.3",
+    "reactfire": "^1.0.0",
     "showdown": "^1.8.6",
     "simplemde": "^1.11.2"
   },
