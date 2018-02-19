@@ -2,7 +2,7 @@
 }
 
 .test {
-  min-height: 100px;
+  height: 100px;
 }
 
 .App-logo {
@@ -11,7 +11,7 @@
 }
 
 .editArea{
-  height: 500px;
+  height: 100px;
 }
 
 .App-header {
