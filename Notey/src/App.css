@@ -14,6 +14,10 @@
   height: 500px;
 }
 
+.Test {
+  background-color: 'red';
+}
+
 .App-header {
   background-color: #222;
   height: 50px;
