@@ -3,6 +3,7 @@ import firebase from './fire.js';
 
 import logo from './logo.svg';
 import Editor from './screens/Editor/Editor.js'
+import Login from './screens/Login/Login.js'
 
 class App extends Component {
 	constructor(props) {
@@ -11,7 +12,7 @@ class App extends Component {
 
 	render() {
     return(
-      <Editor />
+      <Login />
     )
 	}
 }
