@@ -5,15 +5,28 @@ body{
   background: url('https://hd.unsplash.com/photo-1435777940218-be0b632d06db') no-repeat center center fixed ;
 }
 
-#background-video{
+video{
 height: 100%;
 width: 100%;
 float: left;
+opacity: 0.4;
 top: 0;
 padding: none;
 position: fixed;
 object-fit: cover;
-background-color: black;
+background-color: green;
+background: rgba(0,0,0,0.8);
+}
+
+.darken{
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: black;
+  min-height: 100vh;
+  width: 100%;
+  z-index: 100;
 }
 
 .Modal{

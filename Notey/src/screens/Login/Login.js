@@ -44,7 +44,8 @@ export default class Login extends React.Component {
 
 		let videos = [
 			'https://pixabay.com/en/videos/download/video-8256_large.mp4',
-			'https://pixabay.com/en/videos/download/video-1655_source.mp4'
+			'https://pixabay.com/en/videos/download/video-1655_source.mp4',
+			'https://pixabay.com/en/videos/download/video-2303_source.mp4'
 		];
 
 		this.refs.mybgvideo.src = videos[this.state.iterator];
@@ -66,13 +67,14 @@ export default class Login extends React.Component {
 			<div>
 				<video
 					ref="mybgvideo"
-					id="background-video"
 					autoPlay
 					muted
 					src={'https://pixabay.com/en/videos/download/video-1655_source.mp4'}
 					onEnded={() => this.onEnd(this)}>
 					Your browser does not support the video tag.
 				</video>
+        <div className="darken" />
+
 				{component}
 			</div>
 		);
