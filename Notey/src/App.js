@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import firebase from './firebase/fire.js';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Navigation from './Navigation.js';
 import Editor from './screens/Editor/Editor.js';
@@ -15,8 +14,6 @@ class App extends Component {
 		return (
 			<Router>
 				<div>
-					<Navigation />
-					<hr />
 					<Route exact path={routes.SIGN_IN} component={() => <Login />} />
 					<Route exact path={routes.EDITOR} component={() => <Editor />} />
 				</div>

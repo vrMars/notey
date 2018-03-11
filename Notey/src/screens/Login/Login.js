@@ -8,7 +8,6 @@ import './Login.css';
 
 const SignInPage = ({ history }) =>
     <div>
-        <h1>SignIn</h1>
         <Login history={history} />
     </div>
 
@@ -25,7 +24,7 @@ const INITIAL_STATE = {
 
 
 // Main app
-export default class Login extends React.Component {
+class Login extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -36,7 +35,7 @@ export default class Login extends React.Component {
 	}
 
 	handleSubmit(event) {
-        const {
+	    const {
             email,
             password,
         } = this.state;
@@ -76,8 +75,6 @@ export default class Login extends React.Component {
 	}
 	render() {
 		// const for React CSS transition declaration
-		let component = <Modal onSubmit={this.handleSubmit} key="modal" />
-
 
 		return (
 			<div>
@@ -91,46 +88,46 @@ export default class Login extends React.Component {
 				</video>
 				<div className="darken" />
 
-				{component}
+                <div className="Modal">
+                    <Logo />
+                    <form onSubmit={this.handleSubmit}>
+                        <div className="Input">
+                            <input
+                                type="text"
+                                name="email"
+                                placeholder="email"
+                                value={this.state.email}
+                                onChange={(e)=>{this.setState({email: e.target.value});
+                                }}
+                                required
+                                autocomplete="false"
+                            />
+                            <label for={"email"} />
+                        </div>
+                        <div className="Input">
+                            <input
+                                type="password"
+                                name="password"
+                                placeholder="password"
+                                value={this.state.password}
+                                onChange={(e)=>{this.setState({password: e.target.value});
+                                }}
+                                required
+                                autocomplete="false"
+                            />
+                            <label for={"password"} />
+                        </div>
+                        <button className="form_button"> Sign in </button>{' '}
+                    </form>
+                    <a href="#">Lost your password ?</a>
+                </div>
+
 			</div>
 		);
 	}
 }
 
-// Modal
-class Modal extends React.Component {
-	render() {
-		return (
-			<div className="Modal">
-				<Logo />
-				<form onSubmit={this.props.onSubmit}>
-					<Input type="text" name="username" placeholder="username" />
-					<Input type="password" name="password" placeholder="password" />
-						<button className="form_button"> Sign in </button>{' '}
-				</form>
-				<a href="#">Lost your password ?</a>
-			</div>
-		);
-	}
-}
 
-// Generic input field
-class Input extends React.Component {
-	render() {
-		return (
-			<div className="Input">
-				<input
-					type={this.props.type}
-					name={this.props.name}
-					placeholder={this.props.placeholder}
-					required
-					autocomplete="false"
-				/>
-				<label for={this.props.name} />
-			</div>
-		);
-	}
-}
 
 // Fake logo
 class Logo extends React.Component {
@@ -143,3 +140,9 @@ class Logo extends React.Component {
 		);
 	}
 }
+
+export default withRouter(SignInPage);
+
+export {
+  Login,
+};
