@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import * as ReactMde from 'react-mde';
 import { Markdown } from 'react-showdown';
 import 'simplemde/dist/simplemde.min.css';
-import firebase from '../../firebase/fire.js';
+import { fire } from '../../firebase/fire.js';
 import TimerMixin from 'react-timer-mixin';
 
 import 'react-mde/lib/styles/css/react-mde-preview.css';
@@ -26,7 +26,7 @@ class Editor extends Component {
 	componentWillMount() {}
 
 	componentDidMount() {
-		let firebaseRef = firebase.database().ref('testNote');
+		let firebaseRef = fire.database().ref('testNote');
 		console.log(firebaseRef);
 		firebaseRef
 			.once('value', (snapshot) => {
@@ -40,7 +40,7 @@ class Editor extends Component {
 	}
 
 	handleChange(value) {
-		firebase
+		fire
 			.database()
 			.ref('testNote')
 			.set({

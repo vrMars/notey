@@ -1,42 +1,61 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import { auth } from '../../firebase/';
+import * as routes from '../../route';
 import './Login.css';
+
+// Main app
+
+const SignInPage = ({ history }) =>
+    <div>
+        <h1>SignIn</h1>
+        <Login history={history} />
+    </div>
+
+const byPropKey = (propertyName, value) => () => ({
+    [propertyName]: value,
+});
+
+const INITIAL_STATE = {
+    email: '',
+    password: '',
+    iterator: 0,
+    error: null,
+};
+
 
 // Main app
 export default class Login extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			isVisible: true,
-			iterator: 0
+            ...INITIAL_STATE
 		};
 		// Bindings
 		this.handleSubmit = this.handleSubmit.bind(this);
-		this.handleRemount = this.handleRemount.bind(this);
 	}
 
-	handleSubmit(e) {
-		e.preventDefault();
-		this.setState(
-			{
-				isVisible: false
-			},
-			function() {
-				console.log(this.state.isVisible);
-			}
-		);
-		return false;
-	}
-	handleRemount(e) {
-		this.setState(
-			{
-				isVisible: true
-			},
-			function() {
-				console.log(this.state.isVisible);
-			}
-		);
-		e.preventDefault();
+	handleSubmit(event) {
+        const {
+            email,
+            password,
+        } = this.state;
+
+        const {
+            history,
+        } = this.props;
+
+        auth.doSignInWithEmailAndPassword(email, password)
+            .then(() => {
+                this.setState(() => ({ ...INITIAL_STATE }));
+                history.push(routes.EDITOR);
+            })
+            .catch(error => {
+                console.log(error.message);
+                this.setState(byPropKey('error', error));
+            });
+
+        event.preventDefault();
 	}
 	onEnd(e) {
 		var mVid = this.refs.mybgvideo;
@@ -57,11 +76,8 @@ export default class Login extends React.Component {
 	}
 	render() {
 		// const for React CSS transition declaration
-		let component = this.state.isVisible ? (
-			<Modal onSubmit={this.handleSubmit} key="modal" />
-		) : (
-			<ModalBack onClick={this.handleRemount} key="bringitback" />
-		);
+		let component = <Modal onSubmit={this.handleSubmit} key="modal" />
+
 
 		return (
 			<div>
@@ -90,9 +106,7 @@ class Modal extends React.Component {
 				<form onSubmit={this.props.onSubmit}>
 					<Input type="text" name="username" placeholder="username" />
 					<Input type="password" name="password" placeholder="password" />
-					<Link to="/editor">
 						<button className="form_button"> Sign in </button>{' '}
-					</Link>
 				</form>
 				<a href="#">Lost your password ?</a>
 			</div>
@@ -126,20 +140,6 @@ class Logo extends React.Component {
 				<i className="fa fa-edit" aria-hidden="true" />
 				<span>Notey</span>
 			</div>
-		);
-	}
-}
-
-// Button to brind the modal back
-class ModalBack extends React.Component {
-	render() {
-		return (
-			<button
-				className="bringitback"
-				onClick={this.props.onClick}
-				key={this.props.className}>
-				Brind the modal back !
-			</button>
 		);
 	}
 }
