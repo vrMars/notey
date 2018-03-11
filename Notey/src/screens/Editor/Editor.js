@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import * as ReactMde from 'react-mde';
 import { Markdown } from 'react-showdown';
 import 'simplemde/dist/simplemde.min.css';
-import firebase from '../../fire.js';
+import firebase from '../../firebase/fire.js';
 import TimerMixin from 'react-timer-mixin';
 
 import 'react-mde/lib/styles/css/react-mde-preview.css';

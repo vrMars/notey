@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import firebase from './fire.js';
-
-import logo from './logo.svg';
-import Editor from './screens/Editor/Editor.js'
-import Login from './screens/Login/Login.js'
+import firebase from './firebase/fire.js';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Navigation from './Navigation.js';
+import Editor from './screens/Editor/Editor.js';
+import Login from './screens/Login/Login.js';
+import * as routes from './route.js';
 
 class App extends Component {
 	constructor(props) {
@@ -11,9 +12,16 @@ class App extends Component {
 	}
 
 	render() {
-    return(
-      <Login />
-    )
+		return (
+			<Router>
+				<div>
+					<Navigation />
+					<hr />
+					<Route exact path={routes.SIGN_IN} component={() => <Login />} />
+					<Route exact path={routes.EDITOR} component={() => <Editor />} />
+				</div>
+			</Router>
+		);
 	}
 }
 

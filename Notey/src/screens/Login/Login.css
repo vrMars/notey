@@ -38,7 +38,7 @@ background: rgba(0,0,0,0.8);
   background-size: cover;
   border-radius: 20px;
 }
-a{
+.Modal a{
     display: block;
     color: white;
     font-size: 12px;
@@ -47,7 +47,7 @@ a{
     margin: 4px 0 10px 0;
     margin: 10px;
 }
-a:hover{
+.Modal a:hover{
   text-decoration: underline;
 }
 .Input {
@@ -114,13 +114,13 @@ label {
   color: white;
   font-size: 40px;
 }
-span{
+.logo span{
     color: white;
     font-family: 'Noto Sans', sans-serif;
     letter-spacing: 5px;
     text-transform: lowercase;
 }
-i {
+.logo i {
   display: block;
   padding: 25px 20px 20px 0px;
   transform: translate(5px,2px);

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Link } from 'react-router-dom';
 import './Login.css';
 
 // Main app
@@ -73,7 +73,7 @@ export default class Login extends React.Component {
 					onEnded={() => this.onEnd(this)}>
 					Your browser does not support the video tag.
 				</video>
-        <div className="darken" />
+				<div className="darken" />
 
 				{component}
 			</div>
@@ -90,7 +90,9 @@ class Modal extends React.Component {
 				<form onSubmit={this.props.onSubmit}>
 					<Input type="text" name="username" placeholder="username" />
 					<Input type="password" name="password" placeholder="password" />
-					<button className="form_button"> Sign in </button>
+					<Link to="/editor">
+						<button className="form_button"> Sign in </button>{' '}
+					</Link>
 				</form>
 				<a href="#">Lost your password ?</a>
 			</div>
