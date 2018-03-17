@@ -54,7 +54,7 @@ background: rgba(0,0,0,0.8);
   flex-direction: row-reverse;
   align-items: center;
   border-bottom: 1px solid #58a4b0;
-  margin: 0 20px;
+  margin: 15px 30px;
 }
 input{
     border: 0;
@@ -79,16 +79,33 @@ label {
 
 .form_button{
     position: relative;
-    margin: 15px 0 5px 0;
+    margin: 15px 0 0px 0;
     width: 100%;
     background: #58a4b0;
     border: none;
-    border-radius: 5px;
     padding: 15px;
     color: white;
     font-family: 'Noto Sans', sans-serif;
     font-size: 14px;
     cursor: pointer;
+}
+.signup_button{
+    position: relative;
+    margin: 0px 0 5px 0;
+    width: 100%;
+    background: #b05f3d;
+    border: none;
+    padding: 15px;
+    color: white;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+}
+.signup_button:hover{
+    background: #b03400;
+}
+.form_button:hover{
+    background: #1c9bb0;
 }
 .logo {
   text-align: center;
@@ -105,6 +122,19 @@ label {
   display: block;
   padding: 25px 20px 20px 0px;
   transform: translate(5px,2px);
+}
+
+/* make autocomplete transparent */
+@-webkit-keyframes autofill {
+    to {
+        color: white;
+        background: rgba(245, 255, 0, 0.16);
+    }
+}
+
+input:-webkit-autofill {
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
 }
 
 /*

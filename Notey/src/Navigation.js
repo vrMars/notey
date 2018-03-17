@@ -9,6 +9,7 @@ const Navigation = () =>
       <li><Link to={routes.SIGN_IN}>Sign In</Link></li>
       <li><Link to={routes.EDITOR}>Editor</Link></li>
       <li><Link to={routes.ACCOUNT}>Account</Link></li>
+        <li><Link to={routes.SIGN_UP}>sign up</Link></li>
     </ul>
   </div>
 

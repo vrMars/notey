@@ -1,0 +1,111 @@
+
+body{
+    background: radial-gradient(ellipse farthest-corner at center top, #d8dbe2 0%, #a9bcd0 100%);
+    height: 100vh;
+    background: url('https://hd.unsplash.com/photo-1435777940218-be0b632d06db') no-repeat center center fixed ;
+}
+
+video{
+    height: 100%;
+    width: 100%;
+    float: left;
+    opacity: 0.4;
+    top: 0;
+    position: fixed;
+    object-fit: cover;
+    background-color: green;
+    background: rgba(0,0,0,0.8);
+}
+
+.darken{
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: black;
+    min-height: 100vh;
+    width: 100%;
+    z-index: 100;
+}
+
+.Modal{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(30, 75, 99, 0.9);
+    background-size: cover;
+    border-radius: 20px;
+}
+.Modal a{
+    display: block;
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    text-decoration: none;
+    margin: 4px 0 10px 0;
+    margin: 10px;
+}
+.Modal a:hover{
+    text-decoration: underline;
+}
+.Input {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    border-bottom: 1px solid #58a4b0;
+    margin: 15px 30px;
+}
+.Input input{
+    border: 0;
+    background: transparent;
+    padding: 2px 40px;
+    margin: 20px 4px 0 4px;
+    color: white;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 16px;
+}
+.Input input::placeholder{
+    color:white;
+    opacity: 0.4;
+}
+label {
+    font-family: FontAwesome;
+    color: white;
+    font-size: 14px;
+    margin-top: 17px;
+    transition: opacity .3s ease-in-out;
+}
+
+.form_button{
+    position: relative;
+    margin: 15px 0 20px 0;
+    width: 100%;
+    background: #58a4b0;
+    border: none;
+    padding: 15px;
+    color: white;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.form_button:hover{
+    background: #1c9bb0;
+}
+.logo {
+    text-align: center;
+    color: white;
+    font-size: 40px;
+}
+.logo span{
+    color: white;
+    font-family: 'Noto Sans', sans-serif;
+    letter-spacing: 5px;
+    text-transform: lowercase;
+}
+.logo i {
+    display: block;
+    padding: 25px 20px 20px 0px;
+    transform: translate(5px,2px);
+}

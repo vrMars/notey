@@ -17,6 +17,7 @@
 		"react-showdown": "^1.6.0",
 		"react-simplemde-editor": "^3.6.11",
 		"react-timer-mixin": "^0.13.3",
+		"react-toastify": "^3.4.3",
 		"reactfire": "^1.0.0",
 		"showdown": "^1.8.6",
 		"simplemde": "^1.11.2"

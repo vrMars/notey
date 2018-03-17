@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { auth } from '../../firebase/';
+import { ToastContainer, toast } from 'react-toastify';
 import * as routes from '../../route';
 import './Login.css';
 
@@ -11,10 +12,6 @@ const SignInPage = ({ history }) =>
         <Login history={history} />
     </div>
 
-const byPropKey = (propertyName, value) => () => ({
-    [propertyName]: value,
-});
-
 const INITIAL_STATE = {
     email: '',
     password: '',
@@ -22,10 +19,9 @@ const INITIAL_STATE = {
     error: null,
 };
 
-
 // Main app
 class Login extends React.Component {
-	constructor(props) {
+    constructor(props) {
 		super(props);
 		this.state = {
             ...INITIAL_STATE
@@ -50,8 +46,11 @@ class Login extends React.Component {
                 history.push(routes.EDITOR);
             })
             .catch(error => {
+                this.setState(() => ({...INITIAL_STATE}));
                 console.log(error.message);
-                this.setState(byPropKey('error', error));
+                toast.error(error.message, {
+                    position: toast.POSITION.BOTTOM_CENTER
+                });
             });
 
         event.preventDefault();
@@ -76,8 +75,10 @@ class Login extends React.Component {
 	render() {
 		// const for React CSS transition declaration
 
+
 		return (
 			<div>
+                <ToastContainer/>
 				<video
 					ref="mybgvideo"
 					autoPlay
@@ -88,24 +89,27 @@ class Login extends React.Component {
 				</video>
 				<div className="darken" />
 
+
                 <div className="Modal">
                     <Logo />
-                    <form onSubmit={this.handleSubmit}>
+                    <form method={"post"} onSubmit={this.handleSubmit}>
                         <div className="Input">
                             <input
-                                type="text"
+                                ref={"email"}
+                                type={"text"}
                                 name="email"
                                 placeholder="email"
                                 value={this.state.email}
                                 onChange={(e)=>{this.setState({email: e.target.value});
                                 }}
                                 required
-                                autocomplete="false"
+                                autoComplete="false"
                             />
                             <label for={"email"} />
                         </div>
                         <div className="Input">
                             <input
+                                ref={"password"}
                                 type="password"
                                 name="password"
                                 placeholder="password"
@@ -113,13 +117,15 @@ class Login extends React.Component {
                                 onChange={(e)=>{this.setState({password: e.target.value});
                                 }}
                                 required
-                                autocomplete="false"
+                                autoComplete="false"
                             />
                             <label for={"password"} />
                         </div>
-                        <button className="form_button"> Sign in </button>{' '}
+                        <button className="form_button"> Sign in </button>
                     </form>
+                    <button className="signup_button" onClick={() => this.props.history.push(routes.SIGN_UP)}>Sign up</button>
                     <a href="#">Lost your password ?</a>
+
                 </div>
 
 			</div>
