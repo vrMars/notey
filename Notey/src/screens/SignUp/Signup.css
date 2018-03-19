@@ -53,7 +53,6 @@ video{
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
-    border-bottom: 1px solid #58a4b0;
     margin: 15px 30px;
 }
 .Input input{
@@ -77,11 +76,11 @@ label {
     transition: opacity .3s ease-in-out;
 }
 
-.form_button{
+.register_button{
     position: relative;
     margin: 15px 0 20px 0;
     width: 100%;
-    background: #58a4b0;
+    background: #50b04e;
     border: none;
     padding: 15px;
     color: white;
@@ -90,8 +89,8 @@ label {
     cursor: pointer;
 }
 
-.form_button:hover{
-    background: #1c9bb0;
+.register_button:hover{
+    background: #04b000;
 }
 .logo {
     text-align: center;

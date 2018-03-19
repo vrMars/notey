@@ -4,6 +4,7 @@ import { auth } from '../../firebase/';
 import { ToastContainer, toast } from 'react-toastify';
 import * as routes from '../../route';
 import './Signup.css';
+import {fire} from "../../firebase/fire";
 
 // Main app
 
@@ -13,8 +14,11 @@ const SignupPage = ({ history }) =>
     </div>
 
 const INITIAL_STATE = {
+    name: '',
     email: '',
     password: '',
+    uid: '',
+    classes: 'NONE SET',
     iterator: 0,
     error: null,
 };
@@ -30,22 +34,32 @@ class Signup extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    addUserToDB(uid) {
+        fire
+            .database()
+            .ref('Users')
+            .child(uid)
+            .set({
+                classes: this.state.classes,
+                email: this.state.email,
+                name: this.state.name,
+                note1: ""
+            });
+        this.props.history.push(routes.EDITOR);
+    }
+
     handleSubmit(event) {
         const {
             email,
             password,
         } = this.state;
 
-        const {
-            history,
-        } = this.props;
-
         auth.doCreateUserWithEmailAndPassword(email, password)
             .then(() => {
                 auth.doSignInWithEmailAndPassword(email, password)
                     .then(() => {
+                        this.addUserToDB(fire.auth().currentUser.uid)
                         this.setState(() => ({ ...INITIAL_STATE }));
-                        history.push(routes.EDITOR);
                     })
                     .catch(error => {
                         this.setState(() => ({...INITIAL_STATE}));
@@ -105,11 +119,25 @@ class Signup extends React.Component {
 
                     <form autoComplete={"off"} method={"post"} onSubmit={this.handleSubmit}>
 
+                        <div className="Input">
+                            <input
+                                ref={"name"}
+                                type={"text"}
+                                name="name"
+                                placeholder="name"
+                                value={this.state.name}
+                                autoComplete={"new-password"}
+                                onChange={(e)=>{this.setState({name: e.target.value});
+                                }}
+                                required
+                            />
+                            <label for={"name"} />
+                        </div>
 
                         <div className="Input">
                             <input
                                 ref={"email"}
-                                type={"texts"}
+                                type={"text"}
                                 name="email"
                                 placeholder="email"
                                 value={this.state.email}
@@ -134,7 +162,7 @@ class Signup extends React.Component {
                             />
                             <label for={"password"} />
                         </div>
-                        <button className="form_button"> Register </button>
+                        <button className="register_button"> Register </button>
                     </form>
                 </div>
 

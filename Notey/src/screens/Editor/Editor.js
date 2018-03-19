@@ -26,12 +26,12 @@ class Editor extends Component {
 	componentWillMount() {}
 
 	componentDidMount() {
-		let firebaseRef = fire.database().ref('testNote');
+		let firebaseRef = fire.database().ref('Users/' + fire.auth().currentUser.uid);
 		console.log(firebaseRef);
 		firebaseRef
 			.once('value', (snapshot) => {
 				/* Update React state when message is added at Firebase Database */
-				let message = snapshot.val().code;
+				let message = snapshot.val().note1
 				this.setState({ code: message.concat(this.state.code) });
 			})
 			.then(() => {
@@ -40,15 +40,22 @@ class Editor extends Component {
 	}
 
 	handleChange(value) {
-		fire
-			.database()
-			.ref('testNote')
-			.set({
-				code: value
-			});
-		this.setState({
-			code: value
-		});
+	    let currUser = fire.auth().currentUser;
+	    if (currUser){
+            fire
+                .database()
+                .ref('Users/' + currUser.uid)
+                .set({
+                    note1: value
+                });
+            this.setState({
+                code: value
+            });
+        }
+        else {
+	        console.error("Current user not logged in!");
+	    }
+
 	}
 	// //ReactMdeCommands.getDefaultCommands()
 	// <div
