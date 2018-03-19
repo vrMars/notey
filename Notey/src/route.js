@@ -1,5 +1,5 @@
-export const SIGN_UP = '/signup';
-export const SIGN_IN = '/';
-export const EDITOR = '/editor';
-export const ACCOUNT = '/account';
-export const PASSWORD_FORGET = '/pw-forget';
+export const SIGN_UP = '/notey/signup';
+export const SIGN_IN = '/notey/';
+export const EDITOR = '/notey/editor';
+export const ACCOUNT = '/notey/account';
+export const PASSWORD_FORGET = '/notey/pw-forget';
