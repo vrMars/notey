@@ -45,7 +45,7 @@ class Signup extends React.Component {
                 name: this.state.name,
                 note1: ""
             });
-        this.props.history.push(routes.EDITOR);
+        this.props.history.push(routes.NOTES);
     }
 
     handleSubmit(event) {

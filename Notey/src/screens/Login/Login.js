@@ -22,16 +22,16 @@ const INITIAL_STATE = {
 // Main app
 class Login extends React.Component {
     constructor(props) {
-		super(props);
-		this.state = {
+        super(props);
+        this.state = {
             ...INITIAL_STATE
-		};
-		// Bindings
-		this.handleSubmit = this.handleSubmit.bind(this);
-	}
+        };
+        // Bindings
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
 
-	handleSubmit(event) {
-	    const {
+    handleSubmit(event) {
+        const {
             email,
             password,
         } = this.state;
@@ -43,7 +43,7 @@ class Login extends React.Component {
         auth.doSignInWithEmailAndPassword(email, password)
             .then(() => {
                 this.setState(() => ({ ...INITIAL_STATE }));
-                history.push(routes.EDITOR);
+                history.push(routes.NOTES);
             })
             .catch(error => {
                 this.setState(() => ({...INITIAL_STATE}));
@@ -54,40 +54,40 @@ class Login extends React.Component {
             });
 
         event.preventDefault();
-	}
-	onEnd(e) {
-		var mVid = this.refs.mybgvideo;
-		var mSrc = this.refs.mybgvideo.src;
+    }
+    onEnd(e) {
+        var mVid = this.refs.mybgvideo;
+        var mSrc = this.refs.mybgvideo.src;
 
-		let videos = [
-			'https://pixabay.com/en/videos/download/video-8256_large.mp4',
-			'https://pixabay.com/en/videos/download/video-1655_source.mp4',
-			'https://pixabay.com/en/videos/download/video-2303_source.mp4'
-		];
+        let videos = [
+            'https://pixabay.com/en/videos/download/video-8256_large.mp4',
+            'https://pixabay.com/en/videos/download/video-1655_source.mp4',
+            'https://pixabay.com/en/videos/download/video-2303_source.mp4'
+        ];
 
-		this.refs.mybgvideo.src = videos[this.state.iterator];
-		this.setState({ iterator: this.state.iterator + 1 });
-		if (this.state.iterator + 1 >= videos.length) {
-			this.setState({ iterator: 0 });
-		}
-		mVid.load();
-	}
-	render() {
-		// const for React CSS transition declaration
+        this.refs.mybgvideo.src = videos[this.state.iterator];
+        this.setState({ iterator: this.state.iterator + 1 });
+        if (this.state.iterator + 1 >= videos.length) {
+            this.setState({ iterator: 0 });
+        }
+        mVid.load();
+    }
+    render() {
+        // const for React CSS transition declaration
 
 
-		return (
-			<div>
+        return (
+            <div>
                 <ToastContainer/>
-				<video
-					ref="mybgvideo"
-					autoPlay
-					muted
-					src={'https://pixabay.com/en/videos/download/video-1655_source.mp4'}
-					onEnded={() => this.onEnd(this)}>
-					Your browser does not support the video tag.
-				</video>
-				<div className="darken" />
+                <video
+                    ref="mybgvideo"
+                    autoPlay
+                    muted
+                    src={'https://pixabay.com/en/videos/download/video-1655_source.mp4'}
+                    onEnded={() => this.onEnd(this)}>
+                    Your browser does not support the video tag.
+                </video>
+                <div className="darken" />
 
 
                 <div className="Modal">
@@ -128,27 +128,27 @@ class Login extends React.Component {
 
                 </div>
 
-			</div>
-		);
-	}
+            </div>
+        );
+    }
 }
 
 
 
 // Fake logo
 class Logo extends React.Component {
-	render() {
-		return (
-			<div className="logo">
-				<i className="fa fa-edit" aria-hidden="true" />
-				<span>Notey</span>
-			</div>
-		);
-	}
+    render() {
+        return (
+            <div className="logo">
+                <i className="fa fa-edit" aria-hidden="true" />
+                <span>Notey</span>
+            </div>
+        );
+    }
 }
 
 export default withRouter(SignInPage);
 
 export {
-  Login,
+    Login,
 };
