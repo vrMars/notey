@@ -18,13 +18,6 @@ const SignInPage = ({ history }) =>
         <Notes history={history} />
     </div>
 
-const INITIAL_STATE = {
-    email: '',
-    password: '',
-    iterator: 0,
-    error: null,
-};
-
 const styles = {
     root: {
         display: 'flex',
@@ -46,7 +39,7 @@ class Notes extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            ...INITIAL_STATE
+            notesData: [],
         };
         // Bindings
     }
@@ -56,59 +49,36 @@ class Notes extends React.Component {
         var email = "User!";
         if (currUser){
             email = fire.auth().currentUser.email;
+            let ref = fire.database().ref('Users/' + currUser.uid);
+            console.log(ref);
+            ref
+                .once('value', (snapshot) => {
+                    var notesData = [];
+                    var i = 0;
+                    snapshot.forEach((child) => {
+                       var title = child.key;
+                       var value = child.val();
+                       var img = i;
+                       notesData[i] = {
+                         img: img,
+                         title: title,
+                         author: email,
+                       };
+                        i += 1;
+                    });
+                    this.setState({
+                        notesData: notesData
+                    });
+                 });
         }
         console.log(email);
         toast.info("Welcome " + email, {
             position: toast.POSITION.BOTTOM_CENTER
         });
-
     }
 
     render() {
         // const for React CSS transition declaration
-
-        const tilesData = [
-            {
-                img: 'img.jpg',
-                title: 'Breakfast',
-                author: 'jill111',
-            },
-            {
-                img: 'img.jpg',
-                title: 'Tasty burger',
-                author: 'pashminu',
-            },
-            {
-                img: 'img.jpg',
-                title: 'Camera',
-                author: 'Danson67',
-            },
-            {
-                img: 'img.jpg',
-                title: 'Morning',
-                author: 'fancycrave1',
-            },
-            {
-                img: 'img.jpg',
-                title: 'Hats',
-                author: 'Hans',
-            },
-            {
-                img: 'img.jpg',
-                title: 'Honey',
-                author: 'fancycravel',
-            },
-            {
-                img: 'img.jpg',
-                title: 'Vegetables',
-                author: 'jill111',
-            },
-            {
-                img: 'img.jpg',
-                title: 'Water plant',
-                author: 'BkrmadtyaKarki',
-            },
-        ];
 
         return (
             <div>
@@ -117,7 +87,7 @@ class Notes extends React.Component {
                 <MuiThemeProvider>
                 <div style={styles.root}>
                     <GridList style={styles.gridList} cols={0} padding={20} cellHeight={250}>
-                        {tilesData.map((tile) => (
+                        {this.state.notesData.map((tile) => (
                             <GridTile
                                 key={tile.img}
                                 title={tile.title}
