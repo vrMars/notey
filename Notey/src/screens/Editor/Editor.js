@@ -11,12 +11,21 @@ import 'react-mde/lib/styles/css/react-mde-toolbar.css';
 import '../../../node_modules/font-awesome/css/font-awesome.css';
 
 import './Editor.css';
+import {withRouter} from "react-router-dom";
 
 var Showdown = require('showdown');
 var SimpleMDE = require('react-simplemde-editor');
 
+
+const SignInPage = ({ history }) =>
+    <div>
+        <Editor history={history} />
+    </div>
+
+
 class Editor extends Component {
-	mixins: [ReactFireMixin, TimerMixin];
+	// noinspection JSAnnotator
+    mixins: [ReactFireMixin, TimerMixin];
 
 	constructor(props) {
 		super(props);
@@ -26,12 +35,20 @@ class Editor extends Component {
 	componentWillMount() {}
 
 	componentDidMount() {
+	    console.log("THIS IS LOCATION PROP!");
+        console.log(this.props.location.state.noteToLoad);
 		let firebaseRef = fire.database().ref('Users/' + fire.auth().currentUser.uid);
 		console.log(firebaseRef);
 		firebaseRef
 			.once('value', (snapshot) => {
 				/* Update React state when message is added at Firebase Database */
-				let message = snapshot.val().note1
+                var message = "";
+
+                snapshot.forEach((child) => {
+				    if (child.key.equals(this.props.location.state.noteToLoad)){
+				        message = child.val();
+                    }
+                });
 				this.setState({ code: message.concat(this.state.code) });
 			})
 			.then(() => {
@@ -44,9 +61,9 @@ class Editor extends Component {
 	    if (currUser){
             fire
                 .database()
-                .ref('Users/' + currUser.uid)
+                .ref('Users/' + currUser.uid + this.props.location.state.noteToLoad)
                 .set({
-                    note1: value
+                    value
                 });
             this.setState({
                 code: value
@@ -92,5 +109,8 @@ class Editor extends Component {
 		);
 	}
 }
+export default withRouter(SignInPage);
 
-export default Editor;
+export {
+    Editor,
+};

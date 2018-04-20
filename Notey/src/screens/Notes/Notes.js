@@ -77,6 +77,16 @@ class Notes extends React.Component {
         });
     }
 
+    // TODO: FIX PUSH WITH PROPS!
+    _tileClick(title){
+        this.props.router.push({
+            pathname: routes.EDITOR,
+            state: {
+                noteToLoad: title
+            }
+        });
+    }
+
     render() {
         // const for React CSS transition declaration
 
@@ -90,6 +100,7 @@ class Notes extends React.Component {
                         {this.state.notesData.map((tile) => (
                             <GridTile
                                 key={tile.img}
+                                onClick={this._tileClick.bind(this, tile.title)}
                                 title={tile.title}
                                 actionIcon={<IconButton><StarBorder color="rgb(255, 255, 255)" /></IconButton>}
                                 titleStyle={styles.titleStyle}
