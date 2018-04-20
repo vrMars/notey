@@ -8,6 +8,7 @@
 		"firebase": "^4.9.1",
 		"font-awesome": "^4.7.0",
 		"gh-pages": "^1.1.0",
+		"material-ui": "^0.20.0",
 		"react": "^16.2.0",
 		"react-contenteditable": "^2.0.5",
 		"react-dom": "^16.2.0",
