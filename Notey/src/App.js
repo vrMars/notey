@@ -4,6 +4,7 @@ import Navigation from './Navigation.js';
 import Editor from './screens/Editor/Editor.js';
 import Login from './screens/Login/Login.js';
 import Signup from './screens/SignUp/Signup.js';
+import Notes from './screens/Notes/Notes.js';
 
 import * as routes from './route.js';
 
@@ -19,6 +20,7 @@ class App extends Component {
 					<Route exact path={routes.SIGN_IN} component={() => <Login />} />
 					<Route exact path={routes.EDITOR} component={() => <Editor />} />
                     <Route exact path={routes.SIGN_UP} component={() => <Signup />} />
+					<Route exact path={routes.NOTES} component={() => <Notes />} />
 				</div>
 			</Router>
 		);
